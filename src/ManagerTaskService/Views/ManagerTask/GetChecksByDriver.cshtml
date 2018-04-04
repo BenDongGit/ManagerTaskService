@@ -1,9 +1,9 @@
 ﻿@using ManagerTask.Data
+
 @model List<Check>
 @{
     ViewBag.Title = "Checks";
 }
-<h2>@ViewBag.Title.</h2>
 
 @if (ViewBag.Error != null)
 {
@@ -11,27 +11,63 @@
 }
 @if (Model != null && Model.Count > 0)
 {
-    <div style="padding:20px">
-        <div class="row text-info">
-            <div class="col-sm-3 grid-control"><strong>Driver</strong></div>
-            <div class="col-sm-3 grid-control"><strong>Success</strong></div>
-            <div class="col-sm-3 grid-control"><strong>Check Type</strong></div>
-            <div class="col-sm-3 grid-control"><strong>Date</strong></div>
-        </div>
-        <div style="padding-top:10px">
-            @foreach (var check in Model)
-            {
-                <div class="row">
-                    <div class="col-sm-3 grid-control">@check.Driver.Name</div>
-                    <div class="col-sm-3 grid-control">@check.Success</div>
-                    <div class="col-sm-3 grid-control">@((CheckType)check.Type)</div>
-                    <div class="col-sm-3 grid-control">@check.Date</div>
-                </div>
-            }
-        </div>
+    <div class="row">
+        <table id="checks" class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Driver</th>
+                    <th>Success</th>
+                    <th>Check Type</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var check in Model)
+                {
+                    <tr>
+                        <td>@check.Driver.Name</td>
+                        <td>@check.Success</td>
+                        <td>@((CheckType)check.Type)</td>
+                        <td>@check.Date</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 }
 else
 {
-    <p class="text-danger warning">There is no check found</p>
+    <p class="text-danger warning">There is no check found for him</p>
 }
+<script>
+    var filtersConfig = {
+        base_path: '/Scripts/tablefilter/',
+        col_1: 'select',
+        col_2: 'select',
+        alternate_rows: true,
+        rows_counter: true,
+        btn_reset: true,
+        loader: true,
+        mark_active_columns: true,
+        highlight_keywords: true,
+        no_results_message: true,
+        custom_options: {
+            cols: [4],
+            sorts: [true]
+        },
+        col_types: [
+            'string', 'string', 'string', 'date'
+        ],
+        extensions: [{
+            name: 'sort'
+        }],
+        auto_filter: {
+            delay: 0
+        },
+    };
+
+    var tf = new TableFilter('checks', filtersConfig);
+    tf.init();
+
+    $('.helpBtn').remove();
+</script>

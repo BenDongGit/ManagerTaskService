@@ -255,7 +255,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\AlertViewModel.cs" />
+    <Compile Include="Models\ListViewModel.cs" />
     <Compile Include="Resources\ManagerTaskDbContext.cs" />
     <Compile Include="Resources\NinjectDependencyResolver.cs" />
     <Compile Include="Models\AlertLevel.cs" />
@@ -301,6 +301,62 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\tablefilter\style\colsVisibility.css" />
+    <Content Include="Scripts\tablefilter\style\filtersVisibility.css" />
+    <Content Include="Scripts\tablefilter\style\tablefilter.css" />
+    <Content Include="Scripts\tablefilter\style\themes\blank.png" />
+    <Content Include="Scripts\tablefilter\style\themes\btn_clear_filters.png" />
+    <Content Include="Scripts\tablefilter\style\themes\btn_filter.png" />
+    <Content Include="Scripts\tablefilter\style\themes\btn_first_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\btn_last_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\btn_next_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\btn_previous_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\default\default.css" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\bg_infDiv.jpg" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\bg_th.jpg" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\btn_eraser.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\btn_first_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\btn_last_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\btn_next_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\btn_over_eraser.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\btn_over_first_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\btn_over_last_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\btn_over_next_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\btn_over_previous_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\btn_previous_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\default\images\img_loading.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\downsimple.png" />
+    <Content Include="Scripts\tablefilter\style\themes\icn_clp.png" />
+    <Content Include="Scripts\tablefilter\style\themes\icn_exp.png" />
+    <Content Include="Scripts\tablefilter\style\themes\icn_filter.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\icn_filterActive.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\mytheme\images\bg_headers.jpg" />
+    <Content Include="Scripts\tablefilter\style\themes\mytheme\images\bg_infDiv.jpg" />
+    <Content Include="Scripts\tablefilter\style\themes\mytheme\images\btn_filter.png" />
+    <Content Include="Scripts\tablefilter\style\themes\mytheme\images\btn_first_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\mytheme\images\btn_last_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\mytheme\images\btn_next_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\mytheme\images\btn_previous_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\mytheme\images\img_loading.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\mytheme\mytheme.css" />
+    <Content Include="Scripts\tablefilter\style\themes\skyblue\images\bg_skyblue.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\skyblue\images\btn_first_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\skyblue\images\btn_last_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\skyblue\images\btn_next_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\skyblue\images\btn_prev_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\skyblue\images\icn_clear_filters.png" />
+    <Content Include="Scripts\tablefilter\style\themes\skyblue\images\img_loading.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\skyblue\skyblue.css" />
+    <Content Include="Scripts\tablefilter\style\themes\transparent\images\btn_first_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\transparent\images\btn_last_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\transparent\images\btn_next_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\transparent\images\btn_prev_page.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\transparent\images\icn_clear_filters.png" />
+    <Content Include="Scripts\tablefilter\style\themes\transparent\images\img_loading.gif" />
+    <Content Include="Scripts\tablefilter\style\themes\transparent\transparent.css" />
+    <Content Include="Scripts\tablefilter\style\themes\upsimple.png" />
+    <Content Include="Scripts\tablefilter\tablefilter.js" />
+    <Content Include="Scripts\tablefilter\tf-0-cc64807d737bad8510b3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -352,6 +408,8 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Scripts\tablefilter\tablefilter.js.map" />
+    <Content Include="Scripts\tablefilter\tf-0-cc64807d737bad8510b3.js.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ManagerTask.Data\ManagerTask.Data.csproj">

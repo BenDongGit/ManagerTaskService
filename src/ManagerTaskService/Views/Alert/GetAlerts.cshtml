@@ -1,9 +1,11 @@
 ﻿@using ManagerTaskService.Models
-@model AlertViewModel
+@Styles.Render("~/Content/tableFilter")
+@Scripts.Render("~/bundles/tableFilter")
+
+@model List<DriverCheckAlert>
 @{
     ViewBag.Title = "Alerts";
 }
-<h2>@ViewBag.Title.</h2>
 
 @if (ViewBag.Error != null)
 {
@@ -11,58 +13,30 @@
 }
 else
 {
-    if (Model.Alerts != null && Model.Alerts.Count > 0)
+    if (Model.Count > 0)
     {
-        <div style="padding:20px">
-            <div class="row">
-                <input type="text" id="filter" class="form-control input-sm" placeholder="Search" style="float:left" />
-                <div class="btn btn-primary input-sm" id="sort" style="float:left"><span class="glyphicon glyphicon-arrow-down"></span><span class="glyphicon glyphicon-arrow-up"></span></div>
-            </div>
-            <div class="row">
-                <div style="padding:20px" id="container">
-                    <div class="row text-info">
-                        <div class="col-sm-3 grid-control"><strong>Driver</strong></div>
-                        <div class="col-sm-3 grid-control"><strong>Alert Type</strong></div>
-                        <div class="col-sm-3 grid-control"><strong>Alert Level</strong></div>
-                        <div class="col-sm-3 grid-control"><strong>Date</strong></div>
-                    </div>
-                    <div style="padding-top:10px">
-                        @foreach (var alert in Model.Alerts)
+        <div class="row">
+            <table id="alerts" class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Driver</th>
+                        <th>Alert Type</th>
+                        <th>Alert Level</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var alert in Model)
                     {
-                            <div class="row driver-alert">
-                                <div class="col-sm-3 grid-control">@alert.DriverName</div>
-                                <div class="col-sm-3 grid-control">@((AlertType)alert.Type)</div>
-                                <div class="col-sm-3 grid-control">@((AlertLevel)alert.Level)</div>
-                                <div class="col-sm-3 grid-control">@alert.Date</div>
-                            </div>
-                        }
-                    </div>
-                </div>
-                <div class="btn-group">
-                    @for (int i = 1; i <= Model.PagingInfo.Pages; i++)
-                    {
-                        if (i == Model.PagingInfo.CurrentPage)
-                        {
-                            @Html.ActionLink(i.ToString(), "GetAlerts", "Alert", new { area = "", page = i }, new { @class = "btn btn-primary" })
-                        }
-                        else
-                        {
-                            if (Model.PagingInfo.CurrentPage - i == Model.PagingInfo.PageSpan)
-                            {
-                                @Html.ActionLink("<<", "GetAlerts", "Alert", new { area = "", page = i }, new { @class = "btn btn-default" })
-                            }
-                            else if (i - Model.PagingInfo.CurrentPage == Model.PagingInfo.PageSpan)
-                            {
-                                @Html.ActionLink(">>", "GetAlerts", "Alert", new { area = "", page = i }, new { @class = "btn btn-default" })
-                            }
-                            else if (Model.PagingInfo.CurrentPage - i < Model.PagingInfo.PageSpan && i - Model.PagingInfo.CurrentPage < Model.PagingInfo.PageSpan)
-                            {
-                                @Html.ActionLink(i.ToString(), "GetAlerts", "Alert", new { area = "", page = i }, new { @class = "btn btn-default" })
-                            }
-                        }
+                        <tr>
+                            <td>@alert.DriverName</td>
+                            <td>@((AlertType)alert.Type)</td>
+                            <td>@((AlertLevel)alert.Level)</td>
+                            <td>@alert.Date</td>
+                        </tr>
                     }
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
     }
     else
@@ -71,28 +45,37 @@ else
     }
 }
 <script>
-    $('#filter').keyup(function () {
-        filter($(this).val())
-    })
+    var filtersConfig = {
+        base_path: '/Scripts/tablefilter/',
+        col_1: 'select',
+        col_2: 'select',
+        alternate_rows: true,
+        rows_counter: true,
+        btn_reset: true,
+        loader: true,
+        mark_active_columns: true,
+        highlight_keywords: true,
+        no_results_message: true,
+        custom_options: {
+            cols: [4],
+            sorts: [true]
+        },
+        col_types: [
+            'string', 'string', 'string', 'date'
+        ],
+        paging: {
+            results_per_page: ['Records: ', [5, 10]]
+        },
+        extensions: [{
+            name: 'sort'
+        }],
+        auto_filter: {
+            delay: 0
+        },
+    };
 
-    $('#filter').mousemove(function () {
-        filter($(this).val())
-    })
+    var tf = new TableFilter('alerts', filtersConfig);
+    tf.init();
 
-    function filter(key) {
-        var alerts = $('.driver-alert');
-        if (alerts.length) {
-            alerts.map(function (index, el) {
-                if (el.children[0].textContent.toLowerCase().indexOf(key.toLowerCase()) < 0) {
-                    el.setAttribute("style", "display:none");
-                } else {
-                    el.setAttribute("style", "")
-                }
-            })
-        }
-    }
-
-    $('#sort').click(function () {
-        $('#container').append($('.driver-alert').toArray().reverse());
-    })
+    $('.helpBtn').remove();
 </script>

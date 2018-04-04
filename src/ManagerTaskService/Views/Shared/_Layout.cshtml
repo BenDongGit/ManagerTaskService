@@ -9,6 +9,8 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/tableFilter")
+    @Scripts.Render("~/bundles/tableFilter")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -19,23 +21,33 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Manager Task Protal", "GetAlerts", "Alert", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Home", "GetAlerts", "Alert", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Add Driver", "AddDriver", "ManagerTask", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Add Check", "AddCheck", "ManagerTask", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Drivers", "GetDrivers", "ManagerTask", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Checks", "GetChecksByManager", "ManagerTask", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Alerts", "GetAlerts", "Alert", new { area = "" }, null)</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Actions <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Add Driver", "AddDriver", "ManagerTask", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Add Check", "AddCheck", "ManagerTask", new { area = "" }, null)</li>
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
+    <div class="container body-content container-fluid">
+        <div style="font-size:2em;padding:20px 0 10px 20px">
+            @ViewBag.Title
+        </div>
+        <div style="padding:0 20px 20px 20px">
+            @RenderBody()
+            <hr />
+        </div>
     </div>
 </body>
 </html>

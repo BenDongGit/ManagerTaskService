@@ -3,14 +3,14 @@
 namespace ManagerTaskService.Models
 {
     /// <summary>
-    /// Model class for an alert
+    /// Model class for list
     /// </summary>
-    public class AlertViewModel
+    public class ListViewModel<T>
     {
         /// <summary>
-        /// Gets or sets the alerts 
+        /// Gets or sets the items 
         /// </summary>
-        public List<DriverCheckAlert> Alerts { get; set; }
+        public List<T> Items { get; set; }
 
         /// <summary>
         /// Gets or sets the paging info

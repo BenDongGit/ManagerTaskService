@@ -27,9 +27,13 @@
                       "~/Scripts/bootstrap-datetimepicker.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/tableFilter").Include("~/Scripts/tablefilter/tablefilter.js"));
+
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-datetimepicker.css"));
+
+            bundles.Add(new StyleBundle("~/Content/tableFilter").Include("~/Content/tableFilter/style/tableFilter.css"));
 
             bundles.Add(new StyleBundle("~/Content/site").Include(
                       "~/Content/Site.css"));

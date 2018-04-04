@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Drivers";
 }
-<h2>@ViewBag.Title.</h2>
 
 @if (ViewBag.Error != null)
 {
@@ -11,27 +10,63 @@
 }
 @if (Model != null && Model.Count > 0)
 {
-    <div style="padding:20px">
-        <div class="row text-info">
-            <div class="col-sm-3 grid-control"><strong>Name</strong></div>
-            <div class="col-sm-3 grid-control"><strong>Manager</strong></div>
-            <div class="col-sm-3 grid-control"><strong>Date Joined Company</strong></div>
-            <div class="col-sm-3 grid-control"><strong>Checks</strong></div>
-        </div>
-        <div style="padding-top:10px">
-            @foreach (var driver in Model)
-            {
-                <div class="row">
-                    <div class="col-sm-3 grid-control">@driver.Name</div>
-                    <div class="col-sm-3 grid-control">@driver.Manager.UserName</div>
-                    <div class="col-sm-3 grid-control">@driver.DateJoinedCompany</div>
-                    <div class="col-sm-3 grid-control">@Html.ActionLink("Checks", "GetChecksByDriver", "ManagerTask", new { driver = driver.Name }, null)</div>
-                </div>
-            }
-        </div>
+    <div class="row">
+        <table id="drivers" class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Driver</th>
+                    <th>Manager</th>
+                    <th>Date Joined Company</th>
+                    <th>Checks</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var driver in Model)
+                {
+                    <tr>
+                        <td>@driver.Name</td>
+                        <td>@driver.Manager.UserName</td>
+                        <td>@driver.DateJoinedCompany</td>
+                        <td>@Html.ActionLink("Checks", "GetChecksByDriver", "ManagerTask", new { driver = driver.Name }, null)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 }
 else
 {
     <p class="text-danger warning">There are no drivers found</p>
 }
+<script>
+    var filtersConfig = {
+        base_path: '/Scripts/tablefilter/',
+        col_1: 'select',
+        alternate_rows: true,
+        rows_counter: true,
+        btn_reset: true,
+        loader: true,
+        mark_active_columns: true,
+        highlight_keywords: true,
+        no_results_message: true,
+        custom_options: {
+            cols: [4],
+            sorts: [true]
+        },
+        col_types: [
+            'string', 'string', 'date', 'string'
+        ],
+        paging: true,
+        extensions: [{
+            name: 'sort'
+        }],
+        auto_filter: {
+            delay: 0
+        },
+    };
+
+    var tf = new TableFilter('drivers', filtersConfig);
+    tf.init();
+
+    $('.helpBtn').remove();
+</script>

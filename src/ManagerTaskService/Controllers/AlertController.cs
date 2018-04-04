@@ -53,18 +53,18 @@
 
                 alerts.AddRange(alertsForNoCheckDriver);
 
-                AlertViewModel model = new AlertViewModel
-                {
-                    PagingInfo = new PagingInfo
-                    {
-                        CurrentPage = page,
-                        Pages = (int)Math.Ceiling((decimal)alerts.Count / PageSize),
-                        PageSpan = PageSpan
-                    },
-                    Alerts = alerts.Skip(PageSize * (page - 1)).Take(PageSize).OrderBy(x => x.DriverName).ToList()
-                };
+                //ListViewModel<DriverCheckAlert> model = new ListViewModel<DriverCheckAlert>
+                //{
+                //    PagingInfo = new PagingInfo
+                //    {
+                //        CurrentPage = page,
+                //        Pages = (int)Math.Ceiling((decimal)alerts.Count / PageSize),
+                //        PageSpan = PageSpan
+                //    },
+                //    Items = alerts.Skip(PageSize * (page - 1)).Take(PageSize).OrderBy(x => x.DriverName).ToList()
+                //};
 
-                return View(model);
+                return View(alerts);
             }
             catch (Exception e)
             {
