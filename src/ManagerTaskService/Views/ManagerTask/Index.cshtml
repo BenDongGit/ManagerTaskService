@@ -1,0 +1,28 @@
+﻿@model ManagerTask.Data.Driver
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@if (ViewBag.Error != null)
+{
+    <p class="text-danger">@ViewBag.Error</p>
+}
+else
+{
+    if (Model != null)
+    {
+        <div>
+            <label>Name</label> @Model.Name
+        </div>
+        <div>
+            <label>Email</label> @Model.Manager.UserName
+        </div>
+    }
+    else
+    {
+        <p class="text-danger">No driver found</p>
+    }
+}
