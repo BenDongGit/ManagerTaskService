@@ -26,7 +26,7 @@
     <div class="form-group">
         <label class="col-md-2 control-label">Date Joined Company</label>
         <div class="col-md-3">
-            <div class='input-group date ' id='datepicker'>
+            <div class='input-group date' id='datepicker'>
                 <input type='text' class="form-control" data-val="true" data-val-required="The Name field is required." id="dateJoinedCompany" name="dateJoinedCompany" required/>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
@@ -41,7 +41,7 @@
     </div>
 }
 <script type="text/javascript">
-    var date = new Date().toLocaleString();
+    var date = new Date().toLocaleDateString();
     $(function () {
         $('#datepicker').datetimepicker({
             defaultDate: date,
